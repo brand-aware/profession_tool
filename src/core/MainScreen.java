@@ -258,13 +258,24 @@ public class MainScreen extends IOMain{
 	
 	private void doLoadUser() throws Exception{
 		String[] userlist = loadUserList();
-		Object selection = JOptionPane.showInputDialog(null, 
-				"please select a username: ", 
-				"load username", 
-				JOptionPane.INFORMATION_MESSAGE, 
-				new ImageIcon(properties.getCompany()),
-				userlist, userlist[0]);
-		if(selection != null){
+		Object selection = null;
+		if(userlist.length < 1) {
+			String[] empty = {"EMPTY"};
+			selection = JOptionPane.showInputDialog(null, 
+					"please select a username: ", 
+					"load username", 
+					JOptionPane.INFORMATION_MESSAGE, 
+					new ImageIcon(properties.getCompany()),
+					empty, empty[0]);
+		} else {
+			selection = JOptionPane.showInputDialog(null, 
+					"please select a username: ", 
+					"load username", 
+					JOptionPane.INFORMATION_MESSAGE, 
+					new ImageIcon(properties.getCompany()),
+					userlist, userlist[0]);
+		}
+		if(selection != null && selection.toString().compareTo("EMPTY") != 0){
 			String username = selection.toString();
 			if(loadSaveFile(username)){
 				loadObjectives();

@@ -20,8 +20,12 @@ import java.util.Iterator;
 public class IOMain extends CommonMain{
 	
 	protected void saveData() throws IOException{
-		String path = properties.getRootDir() + File.separator + "save_files" + File.separator + displayData.getUsername() + ".txt";
-		BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+		String path = properties.getSaveDir() + File.separator + displayData.getUsername() + ".txt";
+		File file = new File(path);
+		if(!file.exists()) {
+			file.createNewFile();
+		}
+		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
 		writer.write(OBJECTIVE_PATTERN + "\n");
 		ArrayList<String> objectiveList = displayData.getObjectiveList();
 		for(int x = 0; x < objectiveList.size(); x++){
