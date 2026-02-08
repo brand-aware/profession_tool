@@ -1,5 +1,0 @@
-Goal:  tool to organize a professional objectives
-
-Advantage:  Easy input of accomplishments.
-
-Workflow:  system update of progress
